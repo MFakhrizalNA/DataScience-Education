@@ -195,31 +195,41 @@ Aplikasi dibangun menggunakan Streamlit dan berfungsi sebagai dashboard interakt
 🎯 Akses aplikasi online: [pred_app](https://education-performance.streamlit.app/)
 
 ## Conclusion
-Melalui analisis dan implementasi model prediksi dropout menggunakan algoritma Support Vector Classifier (SVC), proyek ini berhasil mengidentifikasi faktor-faktor penting yang memengaruhi kemungkinan mahasiswa untuk tidak menyelesaikan studinya.
+Melalui analisis dan implementasi model prediksi dropout menggunakan algoritma Random Forest Classifier (RFC), proyek ini berhasil mengidentifikasi pola-pola penting yang memengaruhi kemungkinan seorang mahasiswa tidak menyelesaikan studinya. kesimpulan utama:
+1. Nilai akademik semester 1 dan 2 sangat berpengaruh terhadap risiko dropout:
+   - Mahasiswa dengan rata-rata nilai rendah di semester 1 dan 2 memiliki kemungkinan lebih besar untuk dropout.
+   - Terdapat korelasi kuat antara performa awal dan keberlanjutan studi.
+2. Faktor jenis kelamin (gender) juga menunjukkan kontribusi terhadap prediksi dropout:
+   - Dalam beberapa analisis, terdapat perbedaan kecenderungan antara kelompok mahasiswa berdasarkan gender, meskipun kontribusinya tidak sebesar nilai akademik.
+3. Model Random Forest memberikan hasil yang stabil dan interpretatif, memungkinkan tim akademik untuk menilai kontribusi masing-masing fitur (feature importance).
 
-Beberapa temuan utama:
-1. Mahasiswa dengan jumlah mata kuliah yang lulus lebih sedikit, terutama di semester pertama, memiliki risiko lebih tinggi untuk dropout.
-2. Status keuangan juga berpengaruh: mahasiswa yang tidak membayar uang kuliah tepat waktu atau memiliki status debtor cenderung memiliki proporsi dropout yang lebih tinggi.
-3. Faktor seperti status beasiswa, jenis kelamin, dan usia saat pendaftaran juga memberikan pengaruh signifikan terhadap hasil prediksi.
-
-Dengan visualisasi dan dashboard interaktif, institusi seperti Jaya Jaya Institut dapat:
-1. Melakukan pemantauan real-time terhadap potensi dropout mahasiswa.
-2. Memberikan intervensi dini atau bimbingan akademik secara proaktif.
-3. Menyusun kebijakan berbasis data untuk meningkatkan angka kelulusan dan kualitas pendidikan.
-
-Secara keseluruhan, sistem ini dapat menjadi alat bantu strategis dalam mendukung pengambilan keputusan berbasis data demi menciptakan lingkungan pendidikan yang lebih baik dan inklusif.
+Dengan integrasi ke Looker Studio dan data dari PostgreSQL, Jaya Jaya Institut kini dapat:
+1. Melakukan pemantauan real-time terhadap mahasiswa yang berisiko tinggi dropout.
+2. Menyajikan dashboard interaktif dengan metrik seperti:
+   - Distribusi rata-rata nilai per semester berdasarkan status dropout.
+   - Komparasi performa akademik antara mahasiswa dropout dan non-dropout.
+   - Segmentasi risiko berdasarkan gender.
+3. Menyusun kebijakan berbasis data, bukan asumsi.
 
 
 ### Rekomendasi Action Items
 Beberapa rekomendasi item aksi yang dapat diterapkan oleh Jaya-jaya Institut, adalah sebagai berikut:
-1. Pemantauan Rutin Performa Akademik Awal
-   Fokus pada mahasiswa dengan jumlah mata kuliah lulus rendah di semester pertama (≤10). Mereka memiliki potensi lebih tinggi untuk dropout.
-2. Program Intervensi Dini
-   Buat program pendampingan atau bimbingan belajar untuk mahasiswa dengan nilai rendah atau progres akademik lambat, terutama pada semester 1–2.
-3. Pemetaan Risiko Dropout Secara Berkala
-   Implementasikan dashboard prediksi dropout agar pihak akademik dapat memonitor mahasiswa dengan risiko tinggi secara real-time.
-4. Peninjauan Kebijakan Keuangan
-   Identifikasi mahasiswa yang menunggak pembayaran atau berstatus debtor. Sediakan opsi pembayaran yang fleksibel atau beasiswa tambahan untuk mengurangi tekanan finansial.
-5. Evaluasi Efektivitas Beasiswa
-   Lakukan analisis mendalam terhadap pengaruh status beasiswa terhadap dropout. Jika efektif, pertimbangkan perluasan cakupan beasiswa bagi kelompok berisiko.
+1. Fokus pada Performa Akademik Awal
+   - Lakukan monitoring ketat terhadap nilai semester pertama dan kedua.
+   - Mahasiswa dengan rata-rata nilai <10 (misalnya) dapat dikategorikan sebagai kelompok berisiko.
+   - Terapkan sistem alert berbasis nilai untuk tindakan lebih lanjut.
+2. Buat Program Intervensi Dini
+   - Buat program remedial, bimbingan belajar, atau mentoring untuk mahasiswa dengan capaian akademik rendah di awal studi.
+   - Integrasi prediksi dropout dalam proses akademik agar dosen wali dapat melihat potensi risiko lebih awal.
+3. Dashboard Risiko Dropout Berkala
+   Gunakan dashboard di Looker Studio untuk:
+     - Menampilkan mahasiswa berdasarkan skor risiko tertinggi.
+     - Memfilter data berdasarkan gender, program studi, atau semester.
+     - Menilai efektivitas intervensi dari waktu ke waktu.
 
+Kesimpulan keseluruhan Sistem prediksi dropout berbasis Random Forest yang dibangun dalam proyek ini menjadi alat bantu strategis untuk:
+1. Deteksi dini mahasiswa dengan risiko dropout.
+2. Pengambilan keputusan akademik dan intervensi yang lebih terarah.
+3. Peningkatan kualitas pendidikan melalui monitoring berbasis data.
+
+Dengan alat ini, Jaya Jaya Institut memiliki kesempatan untuk menciptakan lingkungan belajar yang lebih inklusif, adaptif, dan sukses.
