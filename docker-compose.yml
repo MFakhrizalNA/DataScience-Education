@@ -1,0 +1,24 @@
+services: 
+  db:
+    image: postgres:13
+    container_name: analysis_education_db 
+    restart: always
+    environment:
+      POSTGRES_DB: education
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  metabase:
+    image: metabase/metabase
+    container_name: analysis_education_metabase 
+    ports:
+      - "3001:3000"
+    depends_on:
+      - db
+
+volumes:
+  db_data:
