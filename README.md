@@ -60,8 +60,8 @@ Setup environment:
 ### 1. Buat Conda Environment
 
 ```bash
-conda create -n education-performance python=3.10 -y
-conda activate education-performance
+conda create -n education python=3.10 -y
+conda activate education
 ```
 
 ### 2. Install Dependensi
@@ -74,8 +74,8 @@ Menjalankan predict dropout
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/Sintasitinuriah/education-performance.git
-cd education-performance
+git clone https://github.com/MFakhrizalNA/DataScience-Education.git
+cd DataScience-Education
 ```
 ### 2. Menjalankan Aplikasi Streamlit
 
@@ -101,34 +101,39 @@ Dataset ini berisi informasi akademik, administratif, dan demografis mahasiswa. 
 | `Status`                           | Status akhir mahasiswa (1 = Graduate, 0 = Dropout, 2=Enroll)                        |
 
 ## 1. Bivariate - EDA
-Pada bagian ini diberikan visualisasi antara dua komponen menggunakan crosstab, scatterplot dan bosplot
+Bagian ini menyajikan visualisasi hubungan antara dua variabel dalam dataset. Teknik yang digunakan antara lain:
+- Crosstab untuk melihat distribusi kategorikal antar variabel.
+- Scatterplot untuk mengamati pola hubungan antar fitur numerik.
+- Boxplot untuk membandingkan persebaran nilai dalam kategori yang berbeda
 ## 2. Multivariate - EDA
-pada bagian ini diberikan visualisasi antara beberapa komponen yang saling berkiatan menggunakan Marix Korelasi, Pairplot dan Violinplot
+Pada tahap ini, dilakukan analisis visual terhadap beberapa variabel secara bersamaan untuk menemukan pola yang kompleks. Visualisasi yang digunakan meliputi:
+- Matriks Korelasi untuk mengukur kekuatan hubungan antar fitur numerik.
+- Pairplot untuk menggambarkan distribusi sepasang variabel sekaligus.
 ## 3. Pengecekan Missing Values, Duplicated dan Outliers
-- Dataset ini tidak memiliki missing value
-- Dataset ini tidak memiliki data yang duplikat 
-- Dataset memiliki outliers dan visualisasikan dengan boxplot
+- Dataset tidak mengandung missing value (nilai kosong).
+- Tidak ditemukan baris duplikat dalam data.
+- Terdapat outlier, yaitu nilai-nilai ekstrem yang menyimpang dari pola data umum, yang divisualisasikan menggunakan boxplot.
 # Data Preparation
 
 ## 1. Mengatasi Outliers
-Outliers adalah nilai ekstrem yang jauh dari distribusi umum data. Kehadiran outliers dapat mengganggu proses pelatihan model, terutama dalam algoritma yang sensitif terhadap distribusi data. Mengurangi distorsi pada statistik dan model yang dihasilkan, serta meningkatkan stabilitas dan akurasi model. pada model ini menggunakan pendekatan Interquartile Range (IQR). IQR merupakan metode statistik yang mengukur sebaran tengah data dan mengidentifikasi nilai-nilai yang berada jauh di luar rentang normal
+Outlier adalah data yang berada jauh dari distribusi mayoritas. Keberadaannya dapat mengganggu pelatihan model, terutama pada algoritma yang peka terhadap distribusi. Dalam proyek ini, pendekatan yang digunakan adalah Interquartile Range (IQR), yaitu metode statistik yang mengidentifikasi data ekstrem di luar rentang kuartil untuk mengurangi pengaruh nilai-nilai anomali.
 
 ## 2. Encoding Data Kategorikal
-Beberapa fitur dalam dataset bersifat kategorikal (bukan numerik), seperti `Status` agar fitur ini dapat digunakan oleh algoritma machine learning (yang umumnya hanya menerima input numerik), dilakukan proses encoding, yaitu mengubah nilai kategorikal menjadi numerik. 
+Beberapa fitur, seperti `Status`, bersifat kategorikal dan tidak bisa langsung digunakan dalam model pembelajaran mesin. Oleh karena itu, dilakukan proses encoding, yaitu mengubah nilai kategorikal menjadi bentuk numerik agar dapat diterima oleh algoritma.
 
 ## 3. Seleksi Fitur (Feature Selection)
-Seleksi fitur adalah proses memilih subset dari fitur yang paling relevan terhadap target. Terlalu banyak fitur yang tidak penting dapat menyebabkan overfitting. Meningkatkan performa model, mengurangi waktu pelatihan, dan mencegah kompleksitas berlebih yang dapat menurunkan generalisasi model. Pada Selection Feature ini diambil dengan menghitung nilai korelasi tertinggi.
+Feature selection dilakukan untuk memilih fitur-fitur yang paling berpengaruh terhadap target. Dengan menghilangkan variabel yang tidak relevan, proses ini membantu meningkatkan akurasi model, mengurangi risiko overfitting, serta mempercepat waktu pelatihan. Dalam proyek ini, fitur dipilih berdasarkan tingkat korelasinya terhadap variabel target.
 
 Fitur terpilih: ['Curricular_units_2nd_sem_approved', 'Curricular_units_2nd_sem_grade', 'Curricular_units_1st_sem_approved', 'Curricular_units_1st_sem_grade']
 
 ## 4. Splitting Data
-Splitting data adalah proses membagi dataset menjadi data pelatihan dan data pengujian. Ini penting untuk mengevaluasi kinerja model secara adil.Untuk memastikan bahwa performa model diuji pada data yang belum pernah dilihat, sehingga mencerminkan kemampuannya dalam generalisasi.
+Pemisahan dataset menjadi data latih dan data uji merupakan langkah penting dalam pembangunan model machine learning. Tujuannya adalah untuk mengevaluasi performa model pada data yang belum pernah digunakan saat pelatihan, sehingga hasil evaluasi mencerminkan kemampuan model untuk melakukan generalisasi terhadap data baru. Pada model ini pembagiannya menjadi 20% data testing dan 80% data training.
 
 ## 4. Standarisasi
-Standarisasi adalah proses menyamakan skala dari fitur-fitur numerik. Banyak algoritma machine learning bekerja optimal ketika fitur memiliki skala yang seragam. Meningkatkan kinerja dan konvergensi algoritma yang sensitif terhadap skala, seperti KNN, SVM, dan PCA.
+Standardisasi dilakukan untuk menyamakan skala variabel numerik dalam dataset, dengan menyamakan skala, model lebih cepat konvergen dan performanya meningkat.
 
 ## 6. SMOTE (Synthetic Minority Over-sampling Technique)
-SMOTE adalah teknik untuk mengatasi masalah ketidakseimbangan kelas dengan membuat data sintetis dari kelas minoritas melalui interpolasi. Berfungsi untuk meningkatkan kemampuan model dalam mempelajari pola dari kelas minoritas, yang sering kali terabaikan dalam data tidak seimbang.
+SMOTE (Synthetic Minority Over-sampling Technique) adalah metode yang digunakan untuk menangani imbalance atau ketidakseimbangan jumlah data antar kelas dalam dataset. Teknik ini bekerja dengan menciptakan sampel sintetis dari kelas minoritas melalui interpolasi data yang ada. Hasilnya, model menjadi lebih mampu mengenali pola dari kelas yang sebelumnya terpinggirkan, sehingga performa klasifikasi menjadi lebih seimbang.
 
 
 # Model Development
