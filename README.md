@@ -192,7 +192,7 @@ Aplikasi dibangun menggunakan Streamlit dan berfungsi sebagai dashboard interakt
     
     - Output yang ditampilkan berupa status: Dropout atau Graduate.
 
-🎯 Akses aplikasi online: [pred_app](https://education-performance.streamlit.app/)
+🎯 Akses aplikasi online: [pred_app](https://datascience-education-bacjgu73fsmlppmu5n5cav.streamlit.app/)
 
 ## Conclusion
 Melalui analisis dan implementasi model prediksi dropout menggunakan algoritma Random Forest Classifier (RFC), proyek ini berhasil mengidentifikasi pola-pola penting yang memengaruhi kemungkinan seorang mahasiswa tidak menyelesaikan studinya. kesimpulan utama:
